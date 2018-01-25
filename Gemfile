@@ -31,6 +31,7 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'annotate'
 gem 'jquery-rails'
+gem 'pry-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
