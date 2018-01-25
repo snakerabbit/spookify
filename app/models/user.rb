@@ -18,6 +18,25 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true}
   before_validation :ensure_session_token
 
+  has_many :user_follows,
+    class_name: 'UserFollow',
+    primary_key: :id,
+    foreign_key: :user_id
+
+  has_many :user_followed,
+    class_name: 'UserFollow',
+    primary_key: :id,
+    foreign_key: :followed_user_id
+
+  has_many :followed_users,
+    through: :user_follows,
+    source: :followed_user
+
+  has_many :followers,
+    through: :user_followed,
+    source: :follower
+
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
